@@ -1,0 +1,9 @@
+<footer class="footer text-center">
+  <!-- Verificar si el servidor esta o no disponible -->
+  <div *ngIf="wsService.socketStatus" class="alert alert-primary m-0" role="alert">
+    Estado del servidor: <strong>Online</strong>
+  </div>
+  <div *ngIf="!wsService.socketStatus" class="alert alert-danger m-0" role="alert">
+    Estado del servidor: <strong>Offline</strong>
+  </div>
+</footer>
