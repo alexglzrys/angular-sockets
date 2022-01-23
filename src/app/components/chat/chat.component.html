@@ -1,5 +1,10 @@
 <h4>Mensajes</h4>
 <hr>
+<div id="chat-mensajes" #viewChat>
+  <li *ngFor="let item of mensajes" class="list-group-item">
+    {{ item.de }}: {{ item.mensaje }}
+  </li>
+</div>
 <form (ngSubmit)="enviar()">
   <input type="text" [(ngModel)]="mensaje" placeholder="Mensaje..." class="form-control" name="mensaje" (keypress.enter)="enviar()" autocomplete="false" autofocus>
 </form>
