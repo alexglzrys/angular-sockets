@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MensajeService } from './services/mensaje.service';
 import { WebsocketService } from './services/websocket.service';
 
 @Component({
@@ -9,10 +10,11 @@ import { WebsocketService } from './services/websocket.service';
 export class AppComponent implements OnInit {
   title = 'angular-sockets';
 
-  constructor(private socket: WebsocketService) { }
+  constructor(private socket: WebsocketService,
+              private mensajeService: MensajeService) { }
 
   ngOnInit(): void {
-
+    this.mensajeService.enviarMensaje('Hola desde el Frontend');
   }
 
 

@@ -26,4 +26,11 @@ export class WebsocketService {
       this.socketStatus = false;
     });
   }
+
+  // Método para emitir eventos (enviar mensaje a través de un socket)
+  emit(evento: string, payload?: any, callback?: Function) {
+    // emit('EVENTO', payload, callback)
+    // El payload por lo general en Sockets es un objeto con información, pero puede ser de cualquier tipo
+    this.socket.emit(evento, payload, callback);
+  }
 }
