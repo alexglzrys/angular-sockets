@@ -4,7 +4,7 @@ import { WebsocketService } from './websocket.service';
 @Injectable({
   providedIn: 'root'
 })
-export class MensajeService {
+export class ChatService {
 
   constructor(private wsService: WebsocketService) { }
 
