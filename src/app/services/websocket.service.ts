@@ -13,6 +13,7 @@ export class WebsocketService {
 
   // La librería de ngx-socket-io, ya ofrece un servicio para comunicarme con sockets desde el cliente al servidor
   constructor(private socket: Socket) {
+    this.cargarStorage();
     this.checkStatus();
   }
 
@@ -45,9 +46,34 @@ export class WebsocketService {
   }
 
   // Configurar nombre del usuario en el servidor de sockets
-  loginWS(nombre: string): void {
-    this.emit('configurar-usuario', { nombre }, (res: any) => {
-      console.log('Respuesta del server', res);
-    })
+  loginWS(nombre: string): Promise<boolean> {
+
+    // ! Los sockets no son asincronos, pero debemos ser concientes que la respuesta puede demorar un poco en el servidor
+    return new Promise((resolve, reject) => {
+
+      this.emit('configurar-usuario', { nombre }, (res: any) => {
+        if (res.ok) {
+          // Si todo es correcto, creamos una instancia del usuario conectado en el socket server
+          this.usuario = new Usuario(nombre);
+          // Guardar los datos del usuario en localstorage
+          this.guardarStorage();
+          resolve(true);
+        } else {
+          reject(false);
+        }
+      });
+
+    });
+
+  }
+
+  guardarStorage() {
+    localStorage.setItem('usuario', JSON.stringify(this.usuario));
+  }
+
+  cargarStorage() {
+    if (localStorage.getItem('usuario')) {
+      this.usuario = JSON.parse(localStorage.getItem('usuario')!)
+    }
   }
 }
