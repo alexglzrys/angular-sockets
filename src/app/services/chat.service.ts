@@ -23,4 +23,9 @@ export class ChatService {
     // Escuchar el evento de nombre "mensaje-nuevo", este puede ser lanzado en el servidor y viajar a través del socket
     return this.wsService.listen('mensaje-nuevo')
   }
+
+  obtenerMensajesPrivados(): Observable<unknown> {
+    // Escuchar el evento mensaje-privado
+    return this.wsService.listen('mensaje-privado');
+  }
 }
