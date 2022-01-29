@@ -76,4 +76,8 @@ export class WebsocketService {
       this.usuario = JSON.parse(localStorage.getItem('usuario')!)
     }
   }
+
+  getUsuario() {
+    return this.usuario;
+  }
 }
