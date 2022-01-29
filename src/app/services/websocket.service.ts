@@ -74,6 +74,8 @@ export class WebsocketService {
   cargarStorage() {
     if (localStorage.getItem('usuario')) {
       this.usuario = JSON.parse(localStorage.getItem('usuario')!)
+      // Indicar al socket server que el usuario sigue conservando su nombre, a pesar que el ID generado sea diferente (por haber recargado la página)
+      this.loginWS(this.usuario.nombre);
     }
   }
 
