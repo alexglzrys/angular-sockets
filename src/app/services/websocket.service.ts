@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { Observable } from 'rxjs';
+import { Usuario } from '../models/usuario.model';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,7 @@ import { Observable } from 'rxjs';
 export class WebsocketService {
 
   public socketStatus: boolean = false;
+  public usuario!: Usuario;
 
   // La librería de ngx-socket-io, ya ofrece un servicio para comunicarme con sockets desde el cliente al servidor
   constructor(private socket: Socket) {
@@ -40,5 +42,12 @@ export class WebsocketService {
   // El payload de los eventos, puede ser de cualquier tipo, por tanto lo dejamos como desconocido
   listen(evento: string): Observable<unknown> {
     return this.socket.fromEvent(evento);
+  }
+
+  // Configurar nombre del usuario en el servidor de sockets
+  loginWS(nombre: string): void {
+    this.emit('configurar-usuario', { nombre }, (res: any) => {
+      console.log('Respuesta del server', res);
+    })
   }
 }
