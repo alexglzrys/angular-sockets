@@ -9,14 +9,20 @@ const config: SocketIoConfig = { url: environment.wsURL, options: {} };
 
 import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
+import { LoginComponent } from './pages/login/login.component';
+import { MensajesComponent } from './pages/mensajes/mensajes.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    MensajesComponent
   ],
   imports: [
     BrowserModule,
     ComponentsModule,
+    AppRoutingModule,
     SocketIoModule.forRoot(config)
   ],
   providers: [],
