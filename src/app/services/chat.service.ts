@@ -33,4 +33,9 @@ export class ChatService {
     // Este evento retorna un observable de tipo array, con los datos de cada usuario conectado
     return this.wsService.listen( 'usuarios-activos' );
   }
+
+  solicitarUsuariosActivos() {
+    // Solicitar usuarios activos cuando entro a la ventana de char
+    this.wsService.emit('solicitar-usuarios-activos');
+  }
 }
