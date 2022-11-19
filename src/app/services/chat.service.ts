@@ -28,4 +28,9 @@ export class ChatService {
     // Escuchar el evento mensaje-privado
     return this.wsService.listen('mensaje-privado');
   }
+
+  obtenerUsuariosActivos() {
+    // Este evento retorna un observable de tipo array, con los datos de cada usuario conectado
+    return this.wsService.listen( 'usuarios-activos' );
+  }
 }

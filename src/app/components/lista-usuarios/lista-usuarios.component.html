@@ -1,1 +1,6 @@
-<p>lista-usuarios works!</p>
+<h4>Usuarios conectados</h4>
+<ul>
+  <li *ngFor="let usuario of usuariosActivosObs | async">
+    {{ usuario.nombre }} <span class="badge bg-primary">{{ usuario.sala }}</span> - <span class="badge bg-warning">{{ usuario.id }}</span>
+  </li>
+</ul>

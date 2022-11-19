@@ -22,6 +22,8 @@ export class WebsocketService {
     this.socket.on('connect', () => {
       console.log('Conectado al servidor');
       this.socketStatus = true;
+      // Si el servidor se cae y se vuelve a levantar, tratar de recuperar la información de los usuarios actualmente conectados
+      this.cargarStorage();
     });
 
     // Escuchar cuando el cliente se desconecta del servidor
