@@ -9,7 +9,7 @@ import { WebsocketService } from 'src/app/services/websocket.service';
 })
 export class MensajesComponent implements OnInit {
 
-  usuario!: Usuario
+  usuario!: Usuario | null;
 
   constructor(private wsService: WebsocketService) { }
 
@@ -17,5 +17,8 @@ export class MensajesComponent implements OnInit {
     this.usuario = this.wsService.usuario;
   }
 
+  logout() {
+    this.wsService.logoutWS();
+  }
 
 }

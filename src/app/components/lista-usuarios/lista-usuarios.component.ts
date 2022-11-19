@@ -14,6 +14,7 @@ export class ListaUsuariosComponent implements OnInit {
   constructor(public chatServices: ChatService) { }
 
   ngOnInit(): void {
+    // Obtener la lista de usuarios activos (como respuesta a la petición o cuando se desconectan)
     this.usuariosActivosObs = this.chatServices.obtenerUsuariosActivos();
 
     // Solicitar la lista de usurios activos

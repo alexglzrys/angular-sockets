@@ -11,7 +11,7 @@ export class ChatService {
 
   enviarMensaje(mensaje: string): void {
     const payload = {
-      de: this.wsService.getUsuario().nombre,
+      de: this.wsService.getUsuario()!.nombre,
       mensaje
     };
 
